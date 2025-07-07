@@ -2,23 +2,69 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Chatbot de Prueba</title>
+  <title>Chatbot SaludIA</title>
   <style>
-    body { font-family: Arial, sans-serif; }
-    #chat { width: 300px; margin: 50px auto; border: 1px solid #ccc; border-radius: 8px; overflow: hidden; }
-    #messages { height: 300px; overflow-y: auto; padding: 10px; background: #f9f9f9; }
-    .msg { margin: 8px 0; }
-    .user { text-align: right; }
-    #input { display: flex; }
-    #input input { flex: 1; padding: 10px; border: none; }
-    #input button { padding: 10px; background: #4CAF50; color: white; border: none; cursor: pointer; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    #chatbot {
+      width: 350px;
+      height: 500px;
+      border: 2px solid #4CAF50;
+      border-radius: 8px;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+    #messages {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+    }
+    .msg {
+      margin: 8px 0;
+      padding: 8px 12px;
+      border-radius: 12px;
+      max-width: 80%;
+    }
+    .user {
+      background: #4CAF50;
+      color: #fff;
+      align-self: flex-end;
+    }
+    .bot {
+      background: #eee;
+      color: #333;
+      align-self: flex-start;
+    }
+    #input {
+      display: flex;
+      border-top: 1px solid #ccc;
+    }
+    #input input {
+      flex: 1;
+      border: none;
+      padding: 10px;
+    }
+    #input button {
+      border: none;
+      background: #4CAF50;
+      color: white;
+      padding: 0 20px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
-  <div id="chat">
+  <div id="chatbot">
     <div id="messages"></div>
     <div id="input">
-      <input type="text" id="text" placeholder="Escribe algo..." />
+      <input type="text" id="text" placeholder="Escribe tu pregunta..." />
       <button onclick="send()">Enviar</button>
     </div>
   </div>
@@ -45,16 +91,21 @@
 
     function respond(msg) {
       const text = msg.toLowerCase();
-      let reply = "No entendí tu pregunta.";
+      let reply = "Lo siento, ¿puedes reformular tu pregunta?";
 
-      if (text.includes('hola')) {
-        reply = "¡Hola! ¿Cómo puedo ayudarte?";
-      } else if (text.includes('cita')) {
-        reply = "Puedes agendar una cita escribiéndonos la fecha y hora.";
-      } else if (text.includes('precio')) {
-        reply = "Nuestros precios dependen del tratamiento.";
-      } else if (text.includes('contacto')) {
-        reply = "Contáctanos a contacto.saludia@gmail.com";
+      // Respuestas automáticas a preguntas comunes
+      if (text.includes('hola') || text.includes('buenas')) {
+        reply = "¡Hola! Soy el chatbot de SaludIA. ¿En qué puedo ayudarte?";
+      } else if (text.includes('cita') || text.includes('agenda')) {
+        reply = "Puedes agendar una cita indicándome la fecha y hora, o te puedo enviar un correo de confirmación.";
+      } else if (text.includes('horario')) {
+        reply = "Nuestro horario es de lunes a viernes de 9:00 a 18:00.";
+      } else if (text.includes('precio') || text.includes('coste')) {
+        reply = "Los precios dependen del tratamiento. ¿Qué tratamiento necesitas?";
+      } else if (text.includes('contacto') || text.includes('correo')) {
+        reply = "Puedes escribirnos a contacto.saludia@gmail.com.";
+      } else if (text.includes('gracias')) {
+        reply = "¡Con gusto! Estoy aquí 24/7 para ayudarte.";
       }
 
       setTimeout(() => addMessage(reply, 'bot'), 500);
