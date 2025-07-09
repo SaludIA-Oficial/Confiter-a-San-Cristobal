@@ -2,114 +2,84 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Chatbot SaludIA</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    #chatbot {
-      width: 350px;
-      height: 500px;
-      border: 2px solid #4CAF50;
-      border-radius: 8px;
-      background: #fff;
-      display: flex;
-      flex-direction: column;
-    }
-    #messages {
-      flex: 1;
-      padding: 10px;
-      overflow-y: auto;
-    }
-    .msg {
-      margin: 8px 0;
-      padding: 8px 12px;
-      border-radius: 12px;
-      max-width: 80%;
-    }
-    .user {
-      background: #4CAF50;
-      color: #fff;
-      align-self: flex-end;
-    }
-    .bot {
-      background: #eee;
-      color: #333;
-      align-self: flex-start;
-    }
-    #input {
-      display: flex;
-      border-top: 1px solid #ccc;
-    }
-    #input input {
-      flex: 1;
-      border: none;
-      padding: 10px;
-    }
-    #input button {
-      border: none;
-      background: #4CAF50;
-      color: white;
-      padding: 0 20px;
-      cursor: pointer;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clínica Dental SaludIA</title>
+  <link rel="stylesheet" href="styles.css"/>
 </head>
+
 <body>
+  <header>
+    <h1>Clínica Dental SaludIA</h1>
+    <p>Tu sonrisa, nuestra prioridad</p>
+  </header>
+
+  <section class="about">
+    <h2>Bienvenido a SaludIA</h2>
+    <p>En nuestra clínica dental, combinamos tecnología de vanguardia con un equipo humano altamente calificado para ofrecerte la mejor atención.</p>
+  </section>
+
+  <section class="services">
+    <h2>Nuestros Servicios</h2>
+    <ul>
+      <li>✔ Revisión y diagnóstico dental</li>
+      <li>✔ Ortodoncia y estética dental</li>
+      <li>✔ Implantes y cirugías</li>
+      <li>✔ Limpieza y prevención</li>
+    </ul>
+  </section>
+
+  <section class="contact">
+    <h2>Contacto</h2>
+    <p>📍 Calle Salud 123, Ciudad</p>
+    <p>📞 Tel: 123 456 789</p>
+    <p>✉️ Email: contacto.saludia@gmail.com</p>
+  </section>
+
+  <!-- Chatbot Básico SaludIA -->
   <div id="chatbot">
-    <div id="messages"></div>
-    <div id="input">
-      <input type="text" id="text" placeholder="Escribe tu pregunta..." />
-      <button onclick="send()">Enviar</button>
-    </div>
+    <h3>💬 Chatbot SaludIA</h3>
+    <div id="chatlog"></div>
+    <input type="text" id="userInput" placeholder="Escribe tu pregunta aquí..."/>
+    <button onclick="sendMessage()">Enviar</button>
   </div>
 
+  <footer>
+    <p>© 2025 SaludIA | Todos los derechos reservados</p>
+  </footer>
+
+  <!-- Lógica del chatbot -->
   <script>
-    const messages = document.getElementById('messages');
-    const input = document.getElementById('text');
+    function sendMessage() {
+      const input = document.getElementById("userInput");
+      const message = input.value.trim();
+      if (!message) return;
 
-    function send() {
-      const msg = input.value.trim();
-      if (!msg) return;
-      addMessage(msg, 'user');
-      respond(msg);
-      input.value = '';
-    }
+      const chatlog = document.getElementById("chatlog");
+      chatlog.innerHTML += `<p><strong>Tú:</strong> ${message}</p>`;
 
-    function addMessage(text, sender) {
-      const div = document.createElement('div');
-      div.className = 'msg ' + sender;
-      div.textContent = text;
-      messages.appendChild(div);
-      messages.scrollTop = messages.scrollHeight;
-    }
+      let reply = "Lo siento, no entendí tu pregunta. ¿Puedes reformularla?";
 
-    function respond(msg) {
-      const text = msg.toLowerCase();
-      let reply = "Lo siento, ¿puedes reformular tu pregunta?";
+      const msg = message.toLowerCase();
 
-      // Respuestas automáticas a preguntas comunes
-      if (text.includes('hola') || text.includes('buenas')) {
-        reply = "¡Hola! Soy el chatbot de SaludIA. ¿En qué puedo ayudarte?";
-      } else if (text.includes('cita') || text.includes('agenda')) {
-        reply = "Puedes agendar una cita indicándome la fecha y hora, o te puedo enviar un correo de confirmación.";
-      } else if (text.includes('horario')) {
+      if (msg.includes("hola") || msg.includes("buenos días") || msg.includes("buenas tardes")) {
+        reply = "¡Hola! Soy el asistente virtual de SaludIA. ¿En qué puedo ayudarte?";
+      } else if (msg.includes("horario")) {
         reply = "Nuestro horario es de lunes a viernes de 9:00 a 18:00.";
-      } else if (text.includes('precio') || text.includes('coste')) {
-        reply = "Los precios dependen del tratamiento. ¿Qué tratamiento necesitas?";
-      } else if (text.includes('contacto') || text.includes('correo')) {
-        reply = "Puedes escribirnos a contacto.saludia@gmail.com.";
-      } else if (text.includes('gracias')) {
-        reply = "¡Con gusto! Estoy aquí 24/7 para ayudarte.";
+      } else if (msg.includes("dirección") || msg.includes("ubicación")) {
+        reply = "Estamos ubicados en Calle Salud 123, Ciudad.";
+      } else if (msg.includes("precio") || msg.includes("coste")) {
+        reply = "Los precios varían según el tratamiento. ¿Te gustaría agendar una consulta gratuita?";
+      } else if (msg.includes("cita") || msg.includes("agendar")) {
+        reply = `Puedes reservar tu cita aquí: <a href="https://tu-enlace-calendly-o-googleforms" target="_blank">Agendar cita</a>`;
+      } else if (msg.includes("gracias")) {
+        reply = "¡De nada! 😊 Si necesitas más ayuda, aquí estoy.";
       }
 
-      setTimeout(() => addMessage(reply, 'bot'), 500);
+      chatlog.innerHTML += `<p><strong>Bot:</strong> ${reply}</p>`;
+      input.value = "";
+      chatlog.scrollTop = chatlog.scrollHeight;
     }
   </script>
+
 </body>
 </html>
