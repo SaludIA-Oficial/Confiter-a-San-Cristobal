@@ -62,3 +62,24 @@ footer {
   border-top: 1px solid #A1866F;
   color: #4B3621;
 }
+
+/* Botón flotante de WhatsApp */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25D366;
+  color: white;
+  font-size: 26px;
+  padding: 14px 16px;
+  border-radius: 50%;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  z-index: 1000;
+  transition: background-color 0.3s;
+}
+
+.whatsapp-float:hover {
+  background-color: #128C7E;
+}
