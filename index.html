@@ -1,85 +1,42 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Clínica Dental SaludIA</title>
-  <link rel="stylesheet" href="styles.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confitería San Cristóbal</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
   <header>
-    <h1>Clínica Dental SaludIA</h1>
-    <p>Tu sonrisa, nuestra prioridad</p>
+    <h1>Confitería San Cristóbal</h1>
+    <nav>
+      <a href="#productos">Productos</a>
+      <a href="#sobre-nosotros">Sobre Nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
   </header>
 
-  <section class="about">
-    <h2>Bienvenido a SaludIA</h2>
-    <p>En nuestra clínica dental, combinamos tecnología de vanguardia con un equipo humano altamente calificado para ofrecerte la mejor atención.</p>
-  </section>
+  <main>
+    <section id="productos">
+      <h2>Nuestros Productos</h2>
+      <p>Pronto agregaremos los productos deliciosos que ofrecemos.</p>
+    </section>
 
-  <section class="services">
-    <h2>Nuestros Servicios</h2>
-    <ul>
-      <li>✔ Revisión y diagnóstico dental</li>
-      <li>✔ Ortodoncia y estética dental</li>
-      <li>✔ Implantes y cirugías</li>
-      <li>✔ Limpieza y prevención</li>
-    </ul>
-  </section>
+    <section id="sobre-nosotros">
+      <h2>Sobre Nosotros</h2>
+      <p>Confitería San Cristóbal es una panadería familiar dedicada a la calidad, el sabor y la tradición.</p>
+    </section>
 
-  <section class="contact">
-    <h2>Contacto</h2>
-    <p>📍 Calle Salud 123, Ciudad</p>
-    <p>📞 Tel: 123 456 789</p>
-    <p>✉️ Email: contacto.saludia@gmail.com</p>
-  </section>
-
-  <!-- Chatbot Básico SaludIA -->
-  <div id="chatbot">
-    <h3>💬 Chatbot SaludIA</h3>
-    <div id="chatlog"></div>
-    <input type="text" id="userInput" placeholder="Escribe tu pregunta aquí..."/>
-    <button onclick="sendMessage()">Enviar</button>
-  </div>
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <p>Ubicación: Calle Principal 123, Tu Ciudad</p>
+      <p>Email: contacto@confiteriasancristobal.com</p>
+      <p>Teléfono: +54 9 1234 567890</p>
+    </section>
+  </main>
 
   <footer>
-    <p>© 2025 SaludIA | Todos los derechos reservados</p>
+    <p>&copy; 2025 Confitería San Cristóbal. Todos los derechos reservados.</p>
   </footer>
-
-  <!-- Lógica del chatbot -->
-  <script>
-    function sendMessage() {
-      const input = document.getElementById("userInput");
-      const message = input.value.trim();
-      if (!message) return;
-
-      const chatlog = document.getElementById("chatlog");
-      chatlog.innerHTML += `<p><strong>Tú:</strong> ${message}</p>`;
-
-      let reply = "Lo siento, no entendí tu pregunta. ¿Puedes reformularla?";
-
-      const msg = message.toLowerCase();
-
-      if (msg.includes("hola") || msg.includes("buenos días") || msg.includes("buenas tardes")) {
-        reply = "¡Hola! Soy el asistente virtual de SaludIA. ¿En qué puedo ayudarte?";
-      } else if (msg.includes("horario")) {
-        reply = "Nuestro horario es de lunes a viernes de 9:00 a 18:00.";
-      } else if (msg.includes("dirección") || msg.includes("ubicación")) {
-        reply = "Estamos ubicados en Calle Salud 123, Ciudad.";
-      } else if (msg.includes("precio") || msg.includes("coste")) {
-        reply = "Los precios varían según el tratamiento. ¿Te gustaría agendar una consulta gratuita?";
-      } else if (msg.includes("cita") || msg.includes("agendar")) {
-        reply = `Puedes reservar tu cita aquí: <a href="https://tu-enlace-calendly-o-googleforms" target="_blank">Agendar cita</a>`;
-      } else if (msg.includes("gracias")) {
-        reply = "¡De nada! 😊 Si necesitas más ayuda, aquí estoy.";
-      }
-
-      chatlog.innerHTML += `<p><strong>Bot:</strong> ${reply}</p>`;
-      input.value = "";
-      chatlog.scrollTop = chatlog.scrollHeight;
-    }
-  </script>
-
 </body>
 </html>
