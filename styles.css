@@ -82,3 +82,30 @@ footer {
 .whatsapp-float:hover {
   background-color: #128C7E;
 }
+.carrusel {
+  width: 100%;
+  overflow: hidden;
+  max-height: 400px;
+  margin-bottom: 2rem;
+}
+
+.carrusel-imagenes {
+  display: flex;
+  width: 300%;
+  animation: deslizar 12s infinite;
+}
+
+.carrusel-imagenes img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+@keyframes deslizar {
+  0% { transform: translateX(0%); }
+  33% { transform: translateX(0%); }
+  36% { transform: translateX(-100%); }
+  66% { transform: translateX(-100%); }
+  69% { transform: translateX(-200%); }
+  100% { transform: translateX(-200%); }
+}
